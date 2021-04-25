@@ -1,7 +1,5 @@
 import re
 
-#stao na lec 7 -> blocks
-
 class Unimplemented(Exception):
     pass
 
@@ -42,14 +40,6 @@ class Eva:
         if(isinstance(exp, str)) and exp[0] == '"' and exp[-1] == '"':
             return exp
 
-        """
-        #sorting
-        
-        exp = sortPriorities(exp, display = True)
-        print("Exp after sorting", exp)
-        """
-        #self.func(exp,env)
-
         # math operators
 
         if exp[0] == '+':
@@ -84,13 +74,8 @@ class Eva:
         return type(exp) == str and re.match(r'[a-zA-Z][a-zA-Z0-9_]*', exp)
 
 
-                    
-
 def run():
     e = Eva(Environment())
-
-
-
 
     exp = ['+', 2, ['*', 3, ['*', 8, ['-', 8, ['/', 16, 4]]]]]
 
