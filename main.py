@@ -66,10 +66,6 @@ class Eva:
 
         # evaluate block
 
-        if exp[0] == 'begin':
-
-            blockEnv = Environment(parent = self.env)
-            return self._evalBlock(exp, blockEnv)
 
         # variable declaration
 
@@ -87,62 +83,6 @@ class Eva:
 
         return type(exp) == str and re.match(r'[a-zA-Z][a-zA-Z0-9_]*', exp)
 
-    def _evalBlock(self, block, env):
-
-        [_tag, *expressions] = block
-
-        result = None
-
-        for exp in expressions:
-            result = self.eval(exp, env)
-
-        return result
-
-
-    def func(self,input, env):
-        for item in input:
-            if isinstance(item, list):
-                return (self.eval(self.func(item, env)))
-                
-
-
-def sortPriorities(exp, display = False):
-        print("Input:", exp)
-        try:
-            if exp[0] == '*' or exp[0] =='/':
-                    if isinstance(exp[2], list) and (exp[2][0] == '+' or exp[2][0] == '-'):
-                        rNode = sortPriorities(exp[2])
-                        del exp[2]
-                        temp = sortPriorities(rNode[1])
-                        rNode[1] = exp
-                        rNode[1].append(temp)
-                        exp = rNode
-                        if display: print("returning", exp)
-                        return exp
-            if display: print("returning", exp)
-            return exp
-        except:
-            if display: print("returning", exp)
-            return exp
-
-def sortPriorities1(exp, display = False):
-        print("Input:", exp)
-        try:
-
-            if isinstance(exp[2], list) and (exp[2][0] == '+' or exp[2][0] == '-'):
-                rNode = sortPriorities(exp[2])
-                del exp[2]
-                temp = sortPriorities(rNode[1])
-                rNode[1] = exp
-                rNode[1].append(temp)
-                exp = rNode
-                if display: print("returning", exp)
-                return exp
-            if display: print("returning", exp)
-            return exp
-        except:
-            if display: print("returning", exp)
-            return exp
 
                     
 
