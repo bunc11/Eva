@@ -56,27 +56,5 @@ class Test_Eva(unittest.TestCase):
         self.assertEqual(self.e.eval('VERSION'), 0.1)
         self.assertEqual(self.e.eval(['var', 'user', 'true']), True)
 
-    def test_block(self):
-
-        self.assertEqual(self.e.eval(
-            ['begin',
-                ['var', 'x', 10],
-                ['var', 'y', 20],
-                ['+', ['*', 'x', 'y'], 30]
-            ]
-        ), 230) # ovaj env se pojavio u donjem assertu?
-
-        self.assertEqual(self.e.eval(
-            ['begin',
-                ['var', 'x', 10],
-                
-                ['begin',
-                    ['var', 'x', 20]
-                ],
-            
-            'x'
-
-            ]
-        ), 10)
-
+    
 unittest.main()
